@@ -1,0 +1,633 @@
+:root {
+  --color-primary: #a8805f;
+  --color-primary-dark: #8a6647;
+  --color-section-bg: #efe6da;
+  --color-border: #ddd0c2;
+  --color-table-border: #e3d8ca;
+  --color-text: #2c2622;
+  --color-text-soft: #6f6258;
+  --color-bg-page: #f6f3ef;
+  --color-bg-card: #ffffff;
+  --color-internal-bg: #fbf8f5;
+  --color-error: #b5564a;
+  --font-display: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg-page);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
+}
+
+.page {
+  max-width: 880px;
+  margin: 32px auto 64px;
+  background: var(--color-bg-card);
+  padding: 48px 56px 40px;
+  box-shadow: 0 2px 24px rgba(60, 45, 30, 0.08);
+  border-radius: 6px;
+}
+
+/* Header */
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.brand-name .accent {
+  color: var(--color-primary-dark);
+  font-weight: 400;
+}
+
+.brand-tag {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-soft);
+  margin: 6px 0 0 3px;
+}
+
+.doc-meta {
+  text-align: right;
+  font-size: 0.85rem;
+  padding-top: 6px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.meta-row label {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+.meta-row input {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  text-align: left;
+  padding: 2px 4px;
+  font-size: 0.85rem;
+  width: 160px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+.meta-row input::placeholder {
+  color: #c9beb2;
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+.meta-row input:focus { outline: none; border-bottom-color: var(--color-primary); }
+
+.doc-title {
+  margin: 28px 0 14px;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.divider {
+  height: 2px;
+  background: var(--color-border);
+  margin-bottom: 28px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--color-primary);
+  background: #fff;
+  color: var(--color-primary-dark);
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn:hover { background: var(--color-section-bg); }
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover { background: var(--color-primary-dark); }
+
+/* Sections */
+.section { margin-bottom: 30px; }
+
+.section-title {
+  background: var(--color-section-bg);
+  border-left: 6px solid var(--color-primary);
+  padding: 11px 16px;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--color-section-bg);
+  border-left: 6px solid var(--color-primary);
+  padding: 11px 16px;
+  margin-bottom: 20px;
+}
+
+.section-title-row .section-title {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--color-text-soft);
+}
+
+/* Fields */
+.field { display: flex; flex-direction: column; margin-bottom: 20px; }
+
+.field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.field .required { color: var(--color-error); }
+.field .hint { font-weight: 400; font-style: italic; color: #a89b8d; }
+
+.field input,
+.field textarea {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  padding: 6px 2px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  background: transparent;
+  color: var(--color-text);
+  width: 100%;
+}
+
+.field input:focus,
+.field textarea:focus { outline: none; border-bottom: 1.5px solid var(--color-primary); }
+
+.field input.error,
+.field textarea.error { border-bottom: 1.5px solid var(--color-error); }
+
+.field.full { width: 100%; }
+
+.field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+
+.field.small { width: 110px; flex-shrink: 0; }
+.field.grow { flex: 1; min-width: 220px; }
+
+.input-suffix { display: flex; align-items: baseline; gap: 6px; }
+.input-suffix input { flex: 1; min-width: 50px; }
+.suffix { font-size: 0.8rem; color: var(--color-text-soft); white-space: nowrap; }
+
+textarea { resize: vertical; }
+
+/* Checkboxes */
+.checkbox-group { display: flex; gap: 26px; flex-wrap: wrap; align-items: center; }
+.checkbox-group.wide { gap: 36px; }
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.92rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--color-text);
+}
+
+.checkbox input { display: none; }
+
+.checkbox .box {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  background: #fff;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.checkbox input:checked + .box { background: var(--color-primary); }
+
+.checkbox input:checked + .box::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Table */
+.table-wrap { overflow-x: auto; margin-bottom: 22px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.78rem; table-layout: fixed; }
+
+/* NUEVOS ANCHOS (Distribución en porcentajes) */
+.col-num          { width: 4%; }
+th:nth-child(2)   { width: 30%; } /* Columna de Medicamento */
+.col-dosis        { width: 15%; }
+.col-presentación { width: 18%; }
+.col-via          { width: 17%; }
+.col-tiempodeadministración { width: 16%; }
+.col-action       { width: 4%; }
+
+thead th {
+  background: var(--color-section-bg);
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  padding: 11px 4px;
+  border: 1px solid var(--color-table-border);
+  text-align: left;
+  white-space: normal; /* Permite que el texto del título baje de línea */
+  line-height: 1.1;
+  vertical-align: bottom;
+  overflow-wrap: anywhere; /* evita que palabras largas (p. ej. "Presentación") se desborden encima de la columna vecina */
+  word-break: break-word;
+  overflow: hidden; /* respaldo: nunca dejar que el texto invada la celda contigua */
+}
+
+tbody td {
+  border: 1px solid var(--color-table-border);
+  padding: 1px 4px;
+  vertical-align: middle;
+}
+
+tbody td.col-num {
+  text-align: center;
+  color: var(--color-text-soft);
+  font-weight: 600;
+  width: 32px;
+}
+
+tbody input {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-size: 0.78rem;
+  padding: 3px 2px;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+tbody input:focus { outline: none; background: #fbf6f0; }
+tbody textarea.auto-resize {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-size: 0.78rem;
+  padding: 3px 2px;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  resize: none;      
+  overflow: hidden;  
+  line-height: 1.3;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+tbody textarea.auto-resize:focus {
+  outline: none;
+  background: #fbf6f0;
+}
+
+.row-remove {
+  border: none;
+  background: none;
+  color: var(--color-error);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 4px;
+}
+
+.row-remove:hover { color: #8a342a; }
+
+/* Cycle row */
+.cycle-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+
+.cycle-row label {
+  font-weight: 600;
+  color: var(--color-text-soft);
+  white-space: nowrap;
+}
+
+.cycle-input, .cycle-input-sm {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  padding: 4px 2px;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+.cycle-input { width: 70px; }
+.cycle-input-sm { width: 60px; }
+.cycle-input:focus, .cycle-input-sm:focus { outline: none; border-bottom-color: var(--color-primary); }
+
+.inline-text { color: var(--color-text-soft); white-space: nowrap; }
+
+/* Signature */
+.signature-section { margin-top: 38px; }
+
+.signature-line {
+  margin-top: 56px;
+  text-align: center;
+}
+
+.signature-line span {
+  display: inline-block;
+  border-top: 1px solid var(--color-text);
+  width: 320px;
+  margin: 0 auto;
+  padding-top: 8px;
+  font-size: 0.8rem;
+  color: var(--color-text-soft);
+}
+
+/* Internal use */
+.internal-section {
+  border: 1.5px dashed var(--color-border);
+  background: var(--color-internal-bg);
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-top: 36px;
+}
+
+.internal-title {
+  margin: 0 0 16px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-primary-dark);
+}
+
+/* Sub-tabla de medicamentos */
+.meds-subsection { margin-bottom: 24px; }
+
+.meds-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.meds-subtitle-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+  padding: 4px 12px;
+  background: var(--color-section-bg);
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+}
+
+.meds-subtitle-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.btn-add-sub {
+  font-size: 0.75rem;
+  padding: 5px 11px;
+}
+
+/* Columna Tipo en tabla unificada */
+.col-tipo {
+  width: 130px;
+  min-width: 110px;
+}
+
+.tipo-select {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-size: 0.75rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  padding: 3px 2px;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.tipo-select:focus {
+  outline: none;
+  border-bottom-color: var(--color-primary);
+}
+
+/* Print */
+@media print {
+  @page {
+    size: Letter portrait;
+    margin: 8mm 10mm;
+  }
+
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  html, body { background: #fff !important; }
+
+  .page {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important; 
+    box-shadow: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    zoom: var(--print-scale, 1);
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important; /* Fuerza a que ocupe exactamente el alto de la pantalla/hoja */
+    box-sizing: border-box !important;
+  }
+  #infusionForm {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+  }
+
+  .no-print, .toolbar, .row-remove, .col-action { display: none !important; }
+
+  /* Header compacto */
+  .doc-header { gap: 8px !important; margin-bottom: 4px !important; }
+  .brand-name  { font-size: 1.5rem !important; letter-spacing: 0.2em !important; }
+  .brand-tag   { font-size: 0.7rem !important; margin-top: 2px !important; }
+  .doc-meta    { font-size: 0.72rem !important; padding-top: 2px !important; }
+  .meta-row    { margin-bottom: 3px !important; gap: 6px !important; }
+  .meta-row input { width: 120px !important; font-size: 0.72rem !important; }
+  .meta-row label { font-size: 0.72rem !important; }
+
+  .doc-title   { margin: 8px 0 6px !important; font-size: 0.82rem !important; }
+  .divider     { margin-bottom: 8px !important; }
+
+  /* Secciones */
+  .section     { margin-bottom: 8px !important; }
+  .section-title,
+  .section-title-row {
+    padding: 5px 10px !important;
+    font-size: 0.68rem !important;
+    margin-bottom: 7px !important;
+  }
+  .section-title-row { gap: 4px !important; }
+
+  /* Campos */
+  .field       { margin-bottom: 6px !important; }
+  .field label { font-size: 0.65rem !important; margin-bottom: 2px !important; }
+  .field input,
+  .field textarea {
+    font-size: 0.78rem !important;
+    padding: 2px 2px !important;
+    border-bottom-color: #999 !important;
+  }
+  .field-row   { gap: 14px !important; margin-bottom: 4px !important; }
+  .field.small { width: 80px !important; }
+  .suffix      { font-size: 0.65rem !important; }
+
+  /* Checkboxes */
+  .checkbox-group      { gap: 14px !important; }
+  .checkbox-group.wide { gap: 20px !important; }
+  .checkbox            { font-size: 0.75rem !important; }
+  .checkbox .box       { width: 13px !important; height: 13px !important; }
+
+  /* Tabla de medicamentos */
+  .table-wrap  { margin-bottom: 6px !important; }
+  table        { font-size: 0.72rem !important; }
+
+  .meds-subsection    { margin-bottom: 10px !important; }
+  .meds-subtitle      { margin-bottom: 5px !important; }
+  .meds-subtitle-label{ font-size: 0.62rem !important; padding: 3px 8px !important; }
+
+  thead th {
+    padding: 5px 5px !important;
+    font-size: 0.6rem !important;
+    background: var(--color-section-bg) !important;
+  }
+
+  tbody td     { padding: 2px 5px !important; }
+  tbody input, tbody textarea.auto-resize { font-size: 0.72rem !important; padding: 3px 2px !important; }
+
+  .tipo-select { font-size: 0.68rem !important; padding: 3px 2px !important; }
+
+  /* Ciclo y observaciones */
+  .cycle-row   { gap: 6px !important; font-size: 0.72rem !important; margin-bottom: 6px !important; }
+  .cycle-row label { font-size: 0.72rem !important; }
+  .cycle-input, .cycle-input-sm {
+    font-size: 0.72rem !important;
+    border-bottom-color: #999 !important;
+    padding: 2px 2px !important;
+  }
+  .cycle-input    { width: 50px !important; }
+  .cycle-input-sm { width: 44px !important; }
+
+  /* Firma */
+  .signature-section { 
+    margin-top: auto !important; /* La clave: absorbe el espacio vacío y se va al fondo */
+    padding-top: 20px !important; 
+  }
+  .signature-line    { margin-top: 18px !important; }
+  .signature-line span { font-size: 0.65rem !important; width: 240px !important; }
+
+  /* Uso interno */
+  .internal-section  { break-inside: avoid !important; margin-top: 10px !important; padding: 10px 14px !important; }
+  .internal-title    { font-size: 0.68rem !important; margin-bottom: 8px !important; }
+
+  /* Fecha de nacimiento (inputs inline) */
+  input[id="dobDia"], input[id="dobMes"]  { width: 36px !important; font-size: 0.78rem !important; }
+  input[id="dobAnio"] { width: 50px !important; font-size: 0.78rem !important; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .page { padding: 28px 20px; margin: 0; border-radius: 0; box-shadow: none; }
+  .brand-name { font-size: 1.7rem; letter-spacing: 0.18em; }
+  .doc-header { flex-direction: column; }
+  .doc-meta { text-align: left; width: 100%; padding-top: 16px; }
+  .meta-row { justify-content: flex-start; }
+  .field-row { gap: 18px; }
+  .field.small { width: 90px; }
+  table { font-size: 0.78rem; }
+  .signature-line span { width: 100%; }
+}

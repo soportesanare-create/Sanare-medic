@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanaré · Indicaciones médicas para cotización de infusión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="doc-header">
+      <div class="brand">
+        <h1 class="brand-name">SANAR<span class="accent">É</span></h1>
+        <p class="brand-tag">Centro oncológico y alta especialidad</p>
+      </div>
+      <div class="doc-meta">
+        <div class="meta-row">
+          <label for="folio">FOLIO</label>
+          <input type="text" id="folio" name="folio">
+        </div>
+        <div class="meta-row">
+          <label for="fecha">FECHA</label>
+          <input type="text" id="fecha" name="fecha" placeholder="DD/MM/AAAA" maxlength="10">
+        </div>
+      </div>
+    </header>
+
+    <p class="doc-title">Indicaciones médicas para cotización de infusión</p>
+    <div class="divider"></div>
+
+    <div class="toolbar no-print">
+      <button type="button" id="btnFolio" class="btn">Generar folio</button>
+      <button type="button" id="btnReset" class="btn">Limpiar formulario</button>
+      <button type="button" id="btnPrint" class="btn btn-primary">Imprimir / Guardar PDF</button>
+    </div>
+
+    <form id="infusionForm" novalidate>
+
+      <!-- ── Paciente ─────────────────────────────────── -->
+      <section class="section">
+        <h2 class="section-title">Paciente y datos antropométricos</h2>
+
+        <div class="field full">
+          <label for="nombre">Nombre del paciente <span class="required">*</span></label>
+          <input type="text" id="nombre" name="nombre">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Fecha de nacimiento</label>
+            <div style="display:flex; gap:6px; align-items:baseline;">
+              <input type="number" id="dobDia"  name="dobDia"  placeholder="DD"
+                     min="1" max="31" style="width:48px; border:none; border-bottom:1px solid var(--color-border); background:transparent; font-size:0.95rem; font-family:var(--font-body); color:var(--color-text); padding:6px 2px; text-align:center;">
+              <span style="color:var(--color-text-soft); font-size:0.85rem;">/</span>
+              <input type="number" id="dobMes"  name="dobMes"  placeholder="MM"
+                     min="1" max="12" style="width:44px; border:none; border-bottom:1px solid var(--color-border); background:transparent; font-size:0.95rem; font-family:var(--font-body); color:var(--color-text); padding:6px 2px; text-align:center;">
+              <span style="color:var(--color-text-soft); font-size:0.85rem;">/</span>
+              <input type="number" id="dobAnio" name="dobAnio" placeholder="AAAA"
+                     min="1900" max="2099" style="width:64px; border:none; border-bottom:1px solid var(--color-border); background:transparent; font-size:0.95rem; font-family:var(--font-body); color:var(--color-text); padding:6px 2px; text-align:center;">
+            </div>
+          </div>
+
+          <div class="field small">
+            <label for="edad">Edad <span class="hint"></span></label>
+            <div class="input-suffix">
+              <input type="number" id="edad" name="edad" min="0" max="120">
+              <span class="suffix">años</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Género</label>
+            <div class="checkbox-group" role="group" aria-label="Género">
+              <label class="checkbox">
+                <input type="checkbox" id="generoM" name="genero" value="M">
+                <span class="box"></span>M
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" id="generoF" name="genero" value="F">
+                <span class="box"></span>F
+              </label>
+            </div>
+          </div>
+
+          <div class="field grow">
+            <label for="diagnostico">Diagnóstico</label>
+            <input type="text" id="diagnostico" name="diagnostico">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field small">
+            <label for="peso">Peso</label>
+            <div class="input-suffix">
+              <input type="number" id="peso" name="peso" step="0.1" min="0">
+              <span class="suffix">kg</span>
+            </div>
+          </div>
+          <div class="field small">
+            <label for="talla">Talla</label>
+            <div class="input-suffix">
+              <input type="number" id="talla" name="talla" step="0.1" min="0">
+              <span class="suffix">cm</span>
+            </div>
+          </div>
+          <div class="field small">
+            <label for="sc">SC <span class="hint"></span></label>
+            <div class="input-suffix">
+              <input type="text" id="sc" name="sc" readonly>
+              <span class="suffix">m²</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Acceso vascular ─────────────────────────── -->
+      <section class="section">
+        <h2 class="section-title">Acceso vascular</h2>
+        <div class="checkbox-group wide" role="group" aria-label="Tipo de acceso vascular">
+          <label class="checkbox">
+            <input type="checkbox" name="acceso" value="Vía periférica">
+            <span class="box"></span>Vía periférica
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="acceso" value="Catéter Puerto">
+            <span class="box"></span>Catéter Puerto
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="acceso" value="CVC">
+            <span class="box"></span>CVC
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="acceso" value="PICC">
+            <span class="box"></span>PICC
+          </label>
+        </div>
+      </section>
+
+      <!-- ── Esquema de medicamentos (3 tablas independientes) ── -->
+      <section class="section">
+        <div class="section-title-row">
+          <h2 class="section-title">Esquema de medicamentos</h2>
+        </div>
+
+      <datalist id="viaOptions">
+        <option value="IV">
+        <option value="VO">
+        <option value="SC">
+        <option value="IM">
+        <option value="Bomba de infusión">
+        <option value="Intratecal">
+      </datalist>
+      <datalist id="medOptionsPremed"></datalist>
+      <datalist id="medOptionsQuimio"></datalist>
+      <datalist id="medOptionsInmuno"></datalist>
+
+        <!-- Premedicación -->
+        <div class="meds-subsection" data-tipo="premed">
+          <div class="meds-subtitle">
+            <span class="meds-subtitle-label">Premedicación</span>
+            <span class="meds-subtitle-line"></span>
+            <button type="button" class="btn btn-add-sub no-print" data-tipo="premed">+ Agregar fila</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th class="col-num">#</th>
+                  <th>Medicamento</th>
+                  <th class="col-dosis">Dosis</th>
+                  <th class="col-presentación">Presentación</th>
+                  <th class="col-via">Vía</th>
+                  <th class="col-tiempodeadministración">Tiempo de administración</th>
+                  <th class="col-action no-print"></th>
+                </tr>
+              </thead>
+              <tbody id="medsBodyPremed">
+                <!-- filas generadas por script.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Quimioterapia -->
+        <div class="meds-subsection" data-tipo="quimio">
+          <div class="meds-subtitle">
+            <span class="meds-subtitle-label">Quimioterapia</span>
+            <span class="meds-subtitle-line"></span>
+            <button type="button" class="btn btn-add-sub no-print" data-tipo="quimio">+ Agregar fila</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th class="col-num">#</th>
+                  <th>Medicamento</th>
+                  <th class="col-dosis">Dosis</th>
+                  <th class="col-presentación">Presentación</th>
+                  <th class="col-via">Vía</th>
+                  <th class="col-tiempodeadministración">Tiempo de administración</th>
+                  <th class="col-action no-print"></th>
+                </tr>
+              </thead>
+              <tbody id="medsBodyQuimio">
+                <!-- filas generadas por script.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Inmunoterapia -->
+        <div class="meds-subsection" data-tipo="inmuno">
+          <div class="meds-subtitle">
+            <span class="meds-subtitle-label">Inmunoterapia</span>
+            <span class="meds-subtitle-line"></span>
+            <button type="button" class="btn btn-add-sub no-print" data-tipo="inmuno">+ Agregar fila</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th class="col-num">#</th>
+                  <th>Medicamento</th>
+                  <th class="col-dosis">Dosis</th>
+                  <th class="col-presentación">Presentación</th>
+                  <th class="col-via">Vía</th>
+                  <th class="col-tiempodeadministración">Tiempo de administración</th>
+                  <th class="col-action no-print"></th>
+                </tr>
+              </thead>
+              <tbody id="medsBodyInmuno">
+                <!-- filas generadas por script.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Ciclo y observaciones -->
+        <div class="cycle-row">
+          <label for="cicloNo">Ciclo No.</label>
+          <input type="text" id="cicloNo" class="cycle-input">
+          <span class="inline-text">de</span>
+          <input type="text" id="ciclosTotal" class="cycle-input" aria-label="Total de ciclos">
+          <span class="inline-text">ciclos ·</span>
+          <label for="dia">Día</label>
+          <input type="text" id="dia" class="cycle-input-sm">
+        </div>
+
+        <div class="field full">
+          <label for="observaciones">Observaciones</label>
+          <textarea id="observaciones" name="observaciones" rows="2"></textarea>
+        </div>
+      </section>
+
+      <!-- ── Médico y firma ──────────────────────────── -->
+      <section class="section signature-section">
+        <div class="field-row">
+          <div class="field grow">
+            <label for="medico">Médico tratante <span class="required">*</span></label>
+            <input type="text" id="medico" name="medico">
+          </div>
+          <div class="field">
+            <label for="cedula">Cédula esp.</label>
+            <input type="text" id="cedula" name="cedula">
+          </div>
+        </div>
+        <div class="signature-line">
+          <span>Firma autógrafa o digital validada del médico</span>
+        </div>
+      </section>
+
+      <!-- ── Uso interno ─────────────────────────────── -->
+      <section class="internal-section">
+        <h3 class="internal-title">Uso interno — Fuerza de ventas</h3>
+        <div class="field-row">
+          <div class="field grow">
+            <label for="asesor">Asesor</label>
+            <input type="text" id="asesor" name="asesor">
+          </div>
+          <div class="field">
+            <label for="cotizacion">No. cotización</label>
+            <input type="text" id="cotizacion" name="cotizacion">
+          </div>
+        </div>
+      </section>
+
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
