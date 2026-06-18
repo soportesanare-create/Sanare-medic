@@ -48,9 +48,24 @@
       <section class="section">
         <h2 class="section-title">Paciente y datos antropométricos</h2>
 
-        <div class="field full">
-          <label for="nombre">Nombre del paciente <span class="required">*</span></label>
-          <input type="text" id="nombre" name="nombre">
+        <div class="field-row">
+          <div class="field grow">
+            <label for="nombre">Nombre del paciente <span class="required">*</span></label>
+            <input type="text" id="nombre" name="nombre">
+          </div>
+          <div class="field">
+            <label>Forma de pago</label>
+            <div class="checkbox-group" role="group" aria-label="Forma de pago">
+              <label class="checkbox">
+                <input type="checkbox" id="pagoBolsillo" name="formaPago" value="Bolsillo">
+                <span class="box"></span>De bolsillo
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" id="pagoAseguradora" name="formaPago" value="Aseguradora">
+                <span class="box"></span>Aseguradora
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="field-row">
