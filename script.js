@@ -299,6 +299,7 @@
         peso:          val('peso'),
         talla:         val('talla'),
         acceso:        [...document.querySelectorAll('input[name="acceso"]:checked')].map(c => c.value),
+        formaPago:     [...document.querySelectorAll('input[name="formaPago"]:checked')].map(c => c.value),
         cicloNo:       val('cicloNo'),
         ciclosTotal:   val('ciclosTotal'),
         dia:           val('dia'),
@@ -320,7 +321,8 @@
       const d = JSON.parse(raw);
 
       if (folioInput && d.folio) folioInput.value = d.folio;
-      if (fechaInput && d.fecha) fechaInput.value = d.fecha;
+      // La fecha siempre refleja el día actual; no se restaura desde localStorage.
+      setFechaHoy();
 
       setFieldValue('nombre',        d.nombre);
       if (dobDia  && d.dobDia)  dobDia.value  = d.dobDia;
@@ -345,6 +347,12 @@
       if (Array.isArray(d.acceso)) {
         document.querySelectorAll('input[name="acceso"]').forEach(cb => {
           cb.checked = d.acceso.includes(cb.value);
+        });
+      }
+
+      if (Array.isArray(d.formaPago)) {
+        document.querySelectorAll('input[name="formaPago"]').forEach(cb => {
+          cb.checked = d.formaPago.includes(cb.value);
         });
       }
 
